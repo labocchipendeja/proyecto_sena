@@ -3,13 +3,13 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from .models import producto
 from .forms import productoForm
-
+from .utils import SepareByClass
 
 
 
 def home(request):
-    print('test')
     pecheras = producto.objects.filter(categoria="pechera")
+    grupos = SepareByClass(producto)
     
     return render(request, "catalog/home.html", {"pecheras" :pecheras, ""  : "correas"})
 

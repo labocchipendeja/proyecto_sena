@@ -16,7 +16,7 @@
 <div class="main">
     <div class="main-background overlay">
         <div class="main-tittle">
-        <h1 class="main-tittle">Bienvenidos a alaskapets</h1>
+        <h1 class="main-tittle">bookSheel</h1>
         </div>
         <div class="main-text-container"> 
             <p class="main-text">
@@ -28,10 +28,12 @@
         </div>
     </div>
 </div>
-<div class="pause-container">
 
+
+<div class="carousel-repeat">
+    
+<div class="pause-container">
     <div class="container-3">
-        
         <div class="products-list" id="1">
         {%for x in  pecheras%}
             {% if x.imagen %}
@@ -76,48 +78,9 @@
         {% endfor %}
         </div>
 
-        <div class="products-list " id="2">
-        {%for x in  pecheras%}
-            {% if x.imagen %}
-                <div class="product">
-                    
-                        <div class="img-container">
-                            <a href="{%url 'orders:product_page' x.nombre x.id%}">
-                            <img src="{{ x.imagen.url }}" alt="{{ x.nombre }}" >
-                            </a>
-                        </div>
-                    
-                    <div class="text">
-                        <h4>{{ x.nombre }}</h4>
-                        <p>{{ x.descripcion }}</p>
-                        <div class="hidden-text">
-                            <p>{{ x.descripcion }}</p>
-                            <p>stock: {{ x.stock}}</p>
-                        </div>
-                    </div>
-                </div>
-            {% elif  x.imagen_url %}
-                <div class="product">
-
-                        <div class="img-container">
-                            <a href="{%url 'orders:product_page' x.nombre x.id%}">
-                            <img src="{{ x.imagen_url }}" alt="{{ x.nombre }}">
-                            </a>
-                        </div>
-                    <div class="text">
-                        <h4>{{ x.nombre }}</h4>
-                        <p>{{ x.precio }}</p>
-                        <div class="hidden-text">
-                            <p>{{ x.descripcion }}</p>
-                            <p> stock:{{ x.stock}}</p>
-                        </div>
-                    </div>
-                </div>
-            
-            {% endif %}
-        {% endfor %}
-        </div>
+        
     </div>
+</div>
 </div>
     
         <div class="dual-conatiner">
