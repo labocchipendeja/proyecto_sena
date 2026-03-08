@@ -1,11 +1,11 @@
 
 <!-- usualy, the html needs tags like "<html>" "<docttype html>" but in this case is not necesary cause-->
 <!-- we extend from plantilla html, that aready have those tags-->
-{%extends "plantilla.html"%}
+{%extends "plantilla.html" %}
 
 <!-- this  block is only used to change the title from the html-->
 {% block title %}Home Catalog{% endblock %}
-{%load static%}
+{% load static %}
 
 
 <!-- this block is used to load the css, you could add css directly here, but is better to create a new -->
