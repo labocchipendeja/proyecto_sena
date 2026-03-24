@@ -23,23 +23,25 @@
 
     <div class ="container-2">
         <div></div>
-        {%for i in posts%}
-            <div class="post">
-                {%if i.user.imagen%}
-                <img src="{{i.user.imagen.url}}">
-                {%else%}
-                <img src="default">}
-                {%endif%}
-                <p>{{i.user.username}}</p>
+        
+            {%for i in posts%}
                 
-                <div class="post-text">
-                    <p>
-                        {{i.content}}
-                    </p>
-                </div>
-            <div>
-        {%endfor%}
-        </div>
+                    <div class="post">
+                        {%if i.user.imagen%}
+                        <img src="{{i.user.imagen.url}}" class="foto-perfil">
+                        {%else%}
+                        <img src="default" class="foto-perfil">
+                        {%endif%}
+                        <p>{{i.user.username}}</p>
+                        
+                        <div class="post-text">
+                            <p>
+                                {{i.content}}
+                            </p>
+                        </div>
+                    <div>       
+            {%endfor%}
+        
         <form method="post">
             <div class="make-post">
                 {%for field in form%}
