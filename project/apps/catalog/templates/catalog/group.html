@@ -1,43 +1,46 @@
 {% extends 'plantilla.html'%}
-
-{% block css %}
 {% load static %}
+{% block css %}
+
 <link rel="stylesheet" type= "text/css" href="{%static 'css/styles.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'catalog/css/group.css'%}">
-<link rell="stylesheet" type="text/css" href="{% static 'catalog/css/group.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'catalog/css/group.css'%}">
 {% endblock %}
 
 
 
 
 {% block content %}
-
-    <div class="side-menu">
-        <div class="sections">
-            {% for i in sections %}
-                <div class="section">
-                    <a href="{% url 'catalog:section' section.id %}">{{ section.name }}</a>
-            {%endfor%}
-        </div>
-    </div>
-
     <div class ="container-2">
-        <div></div>
+        <div>
         {%for i in posts%}
             <div class="post">
-                {%if i.user.imagen%}
-                <img src="{{i.user.imagen.url}}">
-                {%else%}
-                <img src="default">}
-                {%endif%}
-                <p>{{i.user.username}}</p>
-                
-                <div class="post-text">
-                    <p>
-                        {{i.content}}
-                    </p>
+                <div class="button-eliminate">
+                    <button action="">
+                        eliminar
+                    </button>
                 </div>
-            <div>
+                <div class="button_editate">
+                    
+                    <button action="">
+                        editar
+                    </button>
+                </div>
+                <p>{{i.user.username}}</p>
+                        {%if i.user.imagen%}
+                    <img src="{{i.user.imagen.url}}">
+                    {%else%}
+                    <img src="default">
+                    {%endif%}
+                    
+                    
+                    <div class="post-text">
+                        <p>
+                            {{i.content}}
+                        </p>
+                    </div>
+                </div>
+            </div>
         {%endfor%}
         </div>
         <form method="post">
@@ -52,4 +55,27 @@
             <button type="submit">publicar</button>
         </form>
     </div>
+     asdfasdfasd
+    
 {%endblock%}
+
+
+{% block extraContent %}
+
+    <div class="button-menu">
+        <div class="button ">
+            <button></button>
+        </div>
+        <div class="menu menu-close">
+            {% for i in sections %}
+                <div class="section">
+                    <a href="{% url 'catalog:section' section.id %}">{{ section.name }}</a>
+            {%endfor%}
+        </div>
+    </div>
+
+
+    <script src="{% static 'catalog/js/sidemenu.js' %}"></script>
+{%endblock%}
+
+
