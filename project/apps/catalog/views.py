@@ -71,10 +71,9 @@ def topic_group(request, id):
         if form.is_valid():
             post = form.save(commit=False)
             
-            post.user = request.user
             post.group = group
             post.save()
-            group.posts.add(post)
+            group.post.add(post)
             
             
             return redirect('catalog:topic_group', id=id)

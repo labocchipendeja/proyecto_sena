@@ -49,9 +49,10 @@ def Register_view(request):
     if request.method == 'POST':
         print('POST request received in Register_view')
         form = UserCreationForm(request.POST, request.FILES)
-        print('----------form is valid-----------')
-       
+        
+        print(form.data, form.is_valid())
         if form.is_valid():
+            print('----------form is valid-----------')
             
             if es_gmail_valido(form.cleaned_data['email']):
                 pass
@@ -87,13 +88,17 @@ def Register_view(request):
             init_sesion.save()
             login(request, user)
             return redirect('catalog:home')
+        else:
+            print('----------form is invalid-----------')
+            print(form.errors)
     return response
 
 def acounts_view(request):
     if request.method == 'GET': 
+        device_id = request.COOKIES.get("device_id")
         ip= get_client_ip(request)
         user_agent= request.META.get('HTTP_USER_AGENT','')
-        userssessions = UserSession.objects.filter(ip_address = ip, user_agent= user_agent)
+        userssessions = UserSession.objects.filter(ip_address = ip, user_agent= user_agent, device_id=device_id, is_active=True)
         response = render(request, 'users/acounts.html', {"ingresed_users": userssessions})
         return response
     
@@ -135,12 +140,16 @@ def eliminate_user_session_view(request, user_id):
         ip = get_client_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         device_id = request.COOKIES.get("device_id")
-        user =UserSession.objects.get(user_id = user_id, user_agent=user_agent, ip_address=ip, device_id=device_id)
+        
+        user =UserSession.objects.get(user_id = user_id, user_agent=user_agent, ip_address=ip, device_id=device_id, is_active=True)
         if user.user_id == request.user.id:
             logout(request)
             
            
             
+            user.is_active = False
+            user.save()
+        else:
             user.is_active = False
             user.save()
         return response

@@ -21,23 +21,35 @@
     {% csrf_token %}
         <div class="input-group">
             {{form.username}}
-            {{form.username.label_tag}}   
+            {{form.username.label_tag}}
+            {%for i in form.username.errors%}
+                <p class="error">{{i}}</p>
+            {% endfor %}   
             
-            </div>
+        </div>
             
             <div class="input-group">
             {{form.email}}
             {{form.email.label_tag}}
+            {%for i in form.email.errors%}
+                <p class="error">{{i}}</p>
+            {% endfor %}
             </div>
 
             <div class="input-group">
             {{form.password1}}
             {{form.password1.label_tag}}
+            {%for i in form.password1.errors%}
+                <p class="error">{{i}}</p>
+            {% endfor %}
             </div>
             
             <div class="input-group">
             {{form.password2}}
             {{form.password2.label_tag}}
+            {%for i in form.password2.errors%}
+                <p class="error">{{i}}</p>
+            {% endfor %}
         </div>
 
         <button type="submit"> register</button>
