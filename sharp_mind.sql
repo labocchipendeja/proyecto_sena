@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2026 a las 03:35:32
+-- Tiempo de generación: 13-05-2026 a las 04:36:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -244,7 +244,32 @@ CREATE TABLE `django_admin_log` (
   `change_message` longtext NOT NULL,
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` bigint(20) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
+(1, '2026-05-13 01:57:12.493360', '1', 'imagen object (1)', 1, '[{\"added\": {}}]', 6, 2),
+(2, '2026-05-13 02:01:12.143197', '2', 'imagen object (2)', 1, '[{\"added\": {}}]', 6, 2),
+(3, '2026-05-13 02:04:17.791624', '3', 'imagen object (3)', 1, '[{\"added\": {}}]', 6, 2),
+(4, '2026-05-13 02:07:04.542776', '4', 'imagen object (4)', 1, '[{\"added\": {}}]', 6, 2),
+(5, '2026-05-13 02:07:19.012836', '5', 'imagen object (5)', 1, '[{\"added\": {}}]', 6, 2),
+(6, '2026-05-13 02:08:49.045044', '6', 'imagen object (6)', 1, '[{\"added\": {}}]', 6, 2),
+(7, '2026-05-13 02:11:41.337760', '7', 'imagen object (7)', 1, '[{\"added\": {}}]', 6, 2),
+(8, '2026-05-13 02:11:54.366074', '8', 'imagen object (8)', 1, '[{\"added\": {}}]', 6, 2),
+(9, '2026-05-13 02:13:37.412624', '7', 'imagen object (7)', 3, '', 6, 2),
+(10, '2026-05-13 02:14:50.833251', '9', 'imagen object (9)', 1, '[{\"added\": {}}]', 6, 2),
+(11, '2026-05-13 02:21:11.941879', '10', 'imagen object (10)', 1, '[{\"added\": {}}]', 6, 2),
+(12, '2026-05-13 02:23:28.275821', '11', 'imagen object (11)', 1, '[{\"added\": {}}]', 6, 2),
+(13, '2026-05-13 02:28:05.569554', '12', 'imagen object (12)', 1, '[{\"added\": {}}]', 6, 2),
+(14, '2026-05-13 02:28:13.332573', '13', 'imagen object (13)', 1, '[{\"added\": {}}]', 6, 2),
+(15, '2026-05-13 02:28:18.210755', '14', 'imagen object (14)', 1, '[{\"added\": {}}]', 6, 2),
+(16, '2026-05-13 02:28:24.129815', '15', 'imagen object (15)', 1, '[{\"added\": {}}]', 6, 2),
+(17, '2026-05-13 02:29:04.095595', '13', 'imagen object (13)', 3, '', 6, 2),
+(18, '2026-05-13 02:29:04.097114', '12', 'imagen object (12)', 3, '', 6, 2),
+(19, '2026-05-13 02:29:42.871487', '16', 'imagen object (16)', 1, '[{\"added\": {}}]', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -368,7 +393,8 @@ CREATE TABLE `users_customuser` (
 --
 
 INSERT INTO `users_customuser` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `is_staff`, `is_active`, `date_joined`, `email`, `imagen`, `score`, `is_banned`) VALUES
-(1, 'pbkdf2_sha256$1000000$f2c1nlvGsVlrCX55ncr16C$SOcabis+aZSSpDJU5MW6ZsEtWU0ryHx2+iN+z9iLrSU=', '2026-05-12 23:59:50.803487', 0, 'david', '', '', 0, 1, '2026-05-12 23:59:45.783415', 'david@gmail.com', 'imagenes/platon.webp', 0, 0);
+(1, 'pbkdf2_sha256$1000000$f2c1nlvGsVlrCX55ncr16C$SOcabis+aZSSpDJU5MW6ZsEtWU0ryHx2+iN+z9iLrSU=', '2026-05-12 23:59:50.803487', 0, 'david', '', '', 0, 1, '2026-05-12 23:59:45.783415', 'david@gmail.com', 'imagenes/platon.webp', 0, 0),
+(2, 'pbkdf2_sha256$600000$ItX6kYrTGFeMQc5EP51t3a$yRTXzbhyYgSlkseU7/uVFhkBgqEP74FtXT6GxA9ja38=', '2026-05-13 02:12:50.619421', 1, 'agnes', '', '', 1, 1, '2026-05-13 01:55:44.749128', 'alexpapuxd3@gmail.com', 'C:\\Users\\ESTUDIANTE\\Desktop\\proyecto_sena\\project\\static\\img\\user.jpg', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -405,6 +431,25 @@ CREATE TABLE `users_imagen` (
   `imagen` varchar(100) NOT NULL,
   `imagen_url` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users_imagen`
+--
+
+INSERT INTO `users_imagen` (`id`, `imagen`, `imagen_url`) VALUES
+(1, 'users/imagenes/echidna_2S55sjE.jpg', NULL),
+(2, 'users/imagenes/monte_everest.jpg', NULL),
+(3, 'users/imagenes/omero_chino.jpg', NULL),
+(4, 'users/imagenes/L.jpg', NULL),
+(5, 'users/imagenes/platon.webp', NULL),
+(6, 'users/imagenes/cj.jpg', NULL),
+(8, 'users/imagenes/why_so_serius.jpg', NULL),
+(9, 'users/imagenes/astolfo.jpg', NULL),
+(10, 'users/imagenes/cepillo.jpg', NULL),
+(11, 'users/imagenes/goku_calvo.jpg', NULL),
+(14, 'users/imagenes/justin.jpg', NULL),
+(15, 'users/imagenes/cuaderno.jpg', NULL),
+(16, 'users/imagenes/zapato.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -640,7 +685,7 @@ ALTER TABLE `catalog_topic_section_posts`
 -- AUTO_INCREMENT de la tabla `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `django_content_type`
@@ -658,7 +703,7 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT de la tabla `users_customuser`
 --
 ALTER TABLE `users_customuser`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users_customuser_groups`
@@ -676,7 +721,7 @@ ALTER TABLE `users_customuser_user_permissions`
 -- AUTO_INCREMENT de la tabla `users_imagen`
 --
 ALTER TABLE `users_imagen`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `users_usersession`
