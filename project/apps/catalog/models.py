@@ -1,6 +1,6 @@
 from django.db import models
 from apps.users.models import customuser as user
-# Create your models here.
+from django.core.validators import FileExtensionValidator
 class producto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
@@ -37,3 +37,19 @@ class post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add= True )
     group = models.ForeignKey('topics_group', on_delete=models.CASCADE, related_name='post', blank = True)
+    
+class postimagen(models.Model):
+    post = models.ForeignKey(post, on_delete=models.CASCADE, related_name='imagenes', default=None)
+    imagen = models.ImageField(upload_to='catalog/post/imagenes/', null=True, blank=True)
+    tittle = models.CharField(max_length=200, blank=True, help_text="Optional title for the image")
+
+    def __str__(self):
+        return self.tittle or f"Imagen de post {self.post_id}"
+
+class postvideo(models.Model):
+    post = models.ForeignKey(post, on_delete=models.CASCADE, related_name='videos', default=None)
+    video = models.FileField(upload_to='catalog/post/videos', validators=[FileExtensionValidator(allowed_extensions=['mp4', 'avi', 'mov'])], null=True, blank=True)
+    tittle = models.CharField(max_length=200, blank=True, help_text="Optional title for the video")
+
+    def __str__(self):
+        return self.tittle or f"Video de post {self.post_id}"

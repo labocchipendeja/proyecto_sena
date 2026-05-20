@@ -9,6 +9,9 @@ from .models import post as post_model
 from .forms import postForm
 from .forms import topic_groupForm
 from apps.users.models import customuser as CustomUser
+from .forms import postImagenForm
+from .forms import postVideoForm
+from .models import postvideo
 # Create your views here.
 
 
@@ -61,29 +64,51 @@ def add_group(request):
 
 def topic_group(request, id):
     print('--------------------DEBUG---------------------')
-    form = postForm(request.POST)
-    group= topics_group.objects.get(id=id)
+    form = postForm(request.POST or None)
+    group = topics_group.objects.get(id=id)
     sections = group.sections.all()
     group_post = group.post.all()
-    
+    videoform = postVideoForm(request.POST or None, request.FILES or None)
+    imagenform = postImagenForm(request.POST or None, request.FILES or None)
     
     if request.method == 'POST':
-        
         if form.is_valid():
             print('--------------------FORM VALID---------------------')
-            
             post = form.save(commit=False)
             post.user = request.user
             post.group = group
             post.save()
-            group.post.add(post)
-            
-            
+
+            if videoform.is_valid() and videoform.cleaned_data.get('video'):
+                video = videoform.save(commit=False)
+                video.post = post
+                video.save()
+            else:
+                print('videoform errors:', videoform.errors)
+
+            if imagenform.is_valid() and imagenform.cleaned_data.get('imagen'):
+                imagen = imagenform.save(commit=False)
+                imagen.post = post
+                imagen.save()
+            else:
+                print('imagenform errors:', imagenform.errors)
+
             return redirect('catalog:topic_group', id=id)
         else:
-            print(form.errors)
+            print('post form errors:', form.errors)
 
-    return render(request, "catalog/group.html", {"group": group, "sections": sections, "posts": group_post, "form": form})
+    return render(request, "catalog/group.html", {"group": group, 
+                                                "sections": sections,
+                                                "posts": group_post,
+                                                "form": form,
+                                                "videoform": videoform,
+                                                "imagenform": imagenform
+                                                })
+                                                #"postvideos": post_video,
+                                                #"postimagen": post_imagen,
+                                                
+                                                
+                                                #"imagen_form": imagen_form})
 
 def topic_section(request, group_id, section_id):
     group = topics_group.objects.get(id=group_id)

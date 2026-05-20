@@ -35,7 +35,7 @@
 <!-- not sure of why this causes an erro on vs code, but still runs so dont worry-->
                             {%if user.is_authenticated%}
                                 {{user.username}}
-                               
+                                <img src="{{user.imagen.url}}" alt="">
                                 <li><button onclick="window.location.href='{%url 'users:logout'%}'">logout</button></li>
                                 <li><button onclick="window.location.href='{% url 'catalog:add_group'%}'">groups</BUTTON></li>
                             {%else%}

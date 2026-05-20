@@ -30,6 +30,31 @@
                     <p>
                         {{i.content}}
                     </p>
+                    <div>
+                        
+                    {% for video in i.videos.all %}
+                        <p>{{ video.tittle }}</p>
+                        {% if video.video %}
+                        <video controls>
+                            <source src="{{ video.video.url }}" type="video/mp4">
+                        </video>
+                        {% endif %}>
+                    {% endfor %}
+                    {% for imagen in i.imagen.all%}
+                        {% if imagen.imagen %}
+                            <img src="{{ imagen.imagen.url }}" alt="{{ imagen.tittle }}" style="max-width: 100%;" />
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div>
+                        {% for imagen in i.imagenes.all %}
+                            {% if imagen.imagen %}
+                                <img src="{{ imagen.imagen.url }}" alt="{{ imagen.tittle }}" style="max-width: 100%;" />
+                            {% endif %}
+                        {% empty %}
+                            <p>No hay imágenes en este post.</p>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="post-text edit">
                     <form method="POST">
@@ -65,18 +90,27 @@
         </div>
         {%endfor%}
     </div>
-    <form method="post" class="post-form">
-        <div class="postear">
-            <div class="make-post">
-                {%for field in form%}
-                {% csrf_token %}
+    <form method="post" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
 
+        {{ form.non_field_errors }}
+        {{ videoform.non_field_errors }}
+        {{ imagenform.non_field_errors }}
+
+        {{ videoform }}
+        {{ imagenform }}
+
+        <input type="hidden" name="user.id" value="{{ request.user.id }}">
+
+        {% for field in form %}
+            <div>
+                {{ field.label_tag }}
                 {{ field }}
-
-                {% endfor %}
+                {{ field.errors }}
             </div>
-            <button type="submit">publicar</button>
-        </div>
+        {% endfor %}
+
+        <button type="submit">publicar</button>
     </form>
 </div>
 
